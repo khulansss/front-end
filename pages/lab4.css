@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    margin: 0px 0px 10px;
+}
+.box{
+ min-width: 100px;
+ min-height: 150px;
+ background-color: #eeeff2;   
+ font-size: 40px;
+ font-family:  Tahoma, sans-serif;
+ justify-content: center;
+ align-items: center;
+ display: flex;
+ border-left: 10px dotted purple;
+ box-sizing: border-box;
+}
+.box:last-child {
+    background: linear-gradient(to  right, white, red);
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+.box:hover {
+    background-color: #FFD700;
+    transform: scale(1.2);
+    color: white;
+}

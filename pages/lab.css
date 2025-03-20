@@ -1,0 +1,36 @@
+
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+}
+.box{
+    width: 100px;
+    height: 97px;
+    background-color: #e2e2e2;
+    font-size: 40px;
+ font-family:  Tahoma, sans-serif;
+ justify-content: center;
+ align-items: center;
+ display: flex;
+ border-top: solid;
+}
+.box:last-child {
+    background: linear-gradient(to right, white, orange);
+    border: solid black;
+    color: white;
+    width: 94px;
+    height: 94px;
+}
+.box:nth-child(even){
+    background-color: red;
+}
+.box:hover {
+    background-color: #FFD700;
+    transform: scale(1.2);
+    color: white;
+    border-top: solid black;
+}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const exampleData = [
   {
@@ -339,74 +339,77 @@ const exampleData = [
   },
 ];
 
-export default function lab4() {
-  const [count, setCount] = useState("");
+export default function Lab4() {
+  const [count, setCount] = useState(false);
   const [name, setName] = useState("");
 
-  console.log("lenghtj --->", exampleData.length);
-
+  // Filter data based on user input
   const filter = exampleData.filter((item) =>
     item.firstname.toLowerCase().includes(name.toLowerCase())
   );
-  
-  console.log(filter);
-  
+
   return (
-    
-    <div>
-      <div className="bg-gray-900 min-h-screen py-6 px-4 text-gray-100  "><div className="flex items-center gap-3 mb-5 ">
-        <h1 className="font-semibold text-2xl text-indigo-400 ">Khulan</h1>
+    <div className="bg-gray-900 min-h-screen py-10 px-6 text-gray-100">
+      <div className="flex items-center gap-4 mb-8">
+        <h1 className="font-semibold text-4xl text-indigo-400">Khulan</h1>
         <input
           type="text"
-          className="border-2 border-gray-700 rounded-xl px-4 py-3 w-64 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all "
-          size="9"
-          
+          className="border-2 border-gray-700 rounded-xl px-4 py-3 w-64 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+          placeholder="Search by name..."
           value={name}
           onChange={(e) => setName(e.target.value)}
-        /><button
-          className="bg-blue-700 hover:bg-blue-800 text-white rounded-lg px-6 py-3 right-0 transition-all"
-          onClick={() => setCount((count)=> !count)}
+        />
+        <button
+          className="bg-blue-700 hover:bg-blue-800 text-white rounded-lg px-6 py-3 transition-all focus:outline-none"
+          onClick={() => setCount((prev) => !prev)}
         >
-          click me
+          Toggle View
         </button>
-        <p className="ml-3">{count}</p></div>
-        {filter.length===0 ? <p className="text-center text-lg text-red-500">iim hun oldsongu</p> : <> <div className={`${count === true ? "flex flex-col " : "grid"} grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 `}>
-        {filter.map((element) => (
-          <div className="bg-gray-800 p-6 rounded-xl shadow-lg transform  transition-all hover:shadow-lg  hover:shadow-indigo-500/50">
-            <div className={`${
-  count === true ? "grid items-center justify-center" : "flex flex-col items-center space-y-4"
-}`}>
-<div className={`${
-                  count == true ? "flex" : "flex flex-col "
-                }  `}>
-              <img
-                className="w-32 h-32 rounded-full mb-4 object-cover border-2 border-gray-200"  
-                
-                src={element.image}
-              ></img>
-              <div className="ml-5">
-               <h3 className="text-xl font-semibold text-white">{`${element.firstname} ${element.lastname}`}</h3>
-               <p className="text-gray-400">{element.job}</p>
-               <p className="mt-2 text-gray-300">Height: {element.height} cm</p>
-               <div className="mt-4">
-                    <p className="text-sm font-medium text-gray-300">Items:</p>
-                    <ul className="list-disc pl-4 text-gray-600">
-                      {element.items.map((item) => (
-                        <li key={item.id} className="text-sm">
-                          {item.name}
-                        </li>
-                      ))}
-                    </ul></div>
-                  </div>
-            </div></div>
-          </div>
-        ))}</div> </>}
-        
-      
-     
-       
-        
       </div>
+
+      {filter.length === 0 ? (
+        <p className="text-center text-lg text-red-500">No matches found</p>
+      ) : (
+        <div
+          className={`${
+            count ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8"
+          }`}
+        >
+          {filter.map((element) => (
+            <div
+              key={element.id}
+              className="bg-gray-800 p-6 rounded-xl shadow-lg transform hover:scale-105 transition-all hover:shadow-2xl"
+            >
+              <div
+                className={`${
+                  count ? "flex flex-col items-center justify-center" : "flex flex-col items-center space-y-4"
+                }`}
+              >
+                <img
+                  className="w-40 h-40 rounded-full mb-4 object-cover border-4 border-gray-600 transition-transform transform hover:scale-110"
+                  src={element.image}
+                  alt={`${element.firstname} ${element.lastname}`}
+                />
+                <h3 className="text-2xl font-semibold text-white">
+                  {`${element.firstname} ${element.lastname}`}
+                </h3>
+                <p className="text-gray-400 text-base">{element.job}</p>
+                <p className="mt-2 text-gray-300">Height: {element.height} cm</p>
+                <div className="mt-4">
+                  <p className="text-sm font-medium text-gray-300">Items:</p>
+                  <ul className="list-disc pl-4 text-gray-400">
+                    {element.items.map((item) => (
+                      <li key={item.id} className="text-sm">
+                        {item.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

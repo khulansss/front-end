@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-
+import { useRouter } from "next/router";
+import Image from "next/image";
 const exampleData = [
   {
     id: 1,
@@ -342,7 +343,7 @@ const exampleData = [
 export default function lab4() {
   const [count, setCount] = useState("");
   const [name, setName] = useState("");
-
+const router = useRouter();
   console.log("lenghtj --->", exampleData.length);
 
   const filter = exampleData.filter((item) =>
@@ -355,7 +356,22 @@ export default function lab4() {
     
     <div>
       <div className="bg-gray-900 min-h-screen py-6 px-4 text-gray-100  "><div className="flex items-center gap-3 mb-5 ">
-        <h1 className="font-semibold text-2xl text-indigo-400 ">Khulan</h1>
+        <button
+                                  className="  w-[50px] h-[50px] pl-1 ml-3 " 
+                                  onClick={() => { router.push("main"); }}
+                                  aria-label="Go push"
+                                >
+                                  <Image
+                                            src="/back.png"
+                                            height={30}
+                                            width={30}
+                                            className=""
+                                            
+                                            onClick={() => { router.push("main"); }}
+                                            
+                                          />
+                                  
+                                </button>
         <input
           type="text"
           className="border-2 border-gray-700 rounded-xl px-4 py-3 w-64 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all "
